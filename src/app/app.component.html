@@ -1,30 +1,36 @@
-<h3>Multiple Undo Demo</h3>
-<clr-datagrid [(clrDgSelected)]="selected">
+<div class="main-container">
+  <div class="content-container">
+    <div class="content-area">
+      <h3>Multiple Undo Demo</h3>
+      <clr-datagrid [(clrDgSelected)]="selected">
 
-  <clr-dg-action-bar>
-    <div class="btn-group">
-      <button type="button" class="btn btn-sm btn-secondary" (click)="onAdd()">
-        <clr-icon shape="plus"></clr-icon> Add
-      </button>
-      <button type="button" class="btn btn-sm btn-secondary" (click)="onDelete()" [disabled]="!selected.length">
-        <clr-icon shape="minus"></clr-icon> Delete
-      </button>
-      <button type="button" class="btn btn-sm btn-secondary" (click)="onUndo()" [disabled]="!undoable">
-        <clr-icon shape="undo"></clr-icon> Undo
-      </button>
+        <clr-dg-action-bar>
+          <div class="btn-group">
+            <button type="button" class="btn btn-sm btn-secondary" (click)="onAdd()">
+              <clr-icon shape="plus"></clr-icon> Add
+            </button>
+            <button type="button" class="btn btn-sm btn-secondary" (click)="onDelete()" [disabled]="!selected.length">
+              <clr-icon shape="minus"></clr-icon> Delete
+            </button>
+            <button type="button" class="btn btn-sm btn-secondary" (click)="onUndo()" [disabled]="!undoable">
+              <clr-icon shape="undo"></clr-icon> Undo
+            </button>
+          </div>
+        </clr-dg-action-bar>
+        <clr-dg-column>Customer Name</clr-dg-column>
+        <clr-dg-column>Product</clr-dg-column>
+        <clr-dg-column>Rate</clr-dg-column>
+        <clr-dg-column>Total</clr-dg-column>
+
+        <clr-dg-row *ngFor="let order of orders" [clrDgItem]="order">
+          <clr-dg-cell>{{order.customerName}}</clr-dg-cell>
+          <clr-dg-cell>{{order.product}}</clr-dg-cell>
+          <clr-dg-cell>{{order.rate}}</clr-dg-cell>
+          <clr-dg-cell>{{order.total}}</clr-dg-cell>
+        </clr-dg-row>
+
+        <clr-dg-footer>{{orders?.length}} Orders</clr-dg-footer>
+      </clr-datagrid>
     </div>
-  </clr-dg-action-bar>
-  <clr-dg-column>Customer Name</clr-dg-column>
-  <clr-dg-column>Product</clr-dg-column>
-  <clr-dg-column>Rate</clr-dg-column>
-  <clr-dg-column>Total</clr-dg-column>
-
-  <clr-dg-row *ngFor="let order of orders" [clrDgItem]="order">
-    <clr-dg-cell>{{order.customerName}}</clr-dg-cell>
-    <clr-dg-cell>{{order.product}}</clr-dg-cell>
-    <clr-dg-cell>{{order.rate}}</clr-dg-cell>
-    <clr-dg-cell>{{order.total}}</clr-dg-cell>
-  </clr-dg-row>
-
-  <clr-dg-footer>{{orders?.length}} Orders</clr-dg-footer>
-</clr-datagrid>
+  </div>
+</div>
