@@ -23,7 +23,7 @@ export const INIT_STATE: State = {
 
 // REDUCERS
 export const reducers: ActionReducerMap<State> = {
-  ordersState: ordersReducer,
+  ordersState: orderStateReducer,
   undoStack: (state, action) => state
 };
 
@@ -32,7 +32,7 @@ export const deleteOrder = createAction(`[Order] Delete`, props<{ ids: string[] 
 export const undo = createAction(`[Order] Undo`);
 
 
-export const orderReducer1 = createReducer(INIT_ORDER_STATE,
+export const orderReducer = createReducer(INIT_ORDER_STATE,
   // add order
   on(addOrder, (state, order) => {
     const list = [...state.orders];
@@ -46,8 +46,8 @@ export const orderReducer1 = createReducer(INIT_ORDER_STATE,
   })
 );
 
-export function ordersReducer(state: OrderState, action: Action) {
-  return orderReducer1(state, action);
+export function orderStateReducer(state: OrderState, action: Action) {
+  return orderReducer(state, action);
 }
 
 export function undoMetaReducer(reducer: ActionReducer<any>): ActionReducer<any> {
